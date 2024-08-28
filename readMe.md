@@ -7,18 +7,26 @@ Readr is a RSS Feed Reader Android app.
 - Capacitor
 
 ## Todo
-1. Architecture MVVM :
-  - Créer structure de base (services, modèles, composants)
-  - Implémenter binding bidirectionnel
+### Architecture MVVM
+- [x] Implémenter la structure de base MVVM
+- [x] Créer le modèle Feed
+- [x] Implémenter FeedService
+- [x] Créer FeedListViewModel
+- [x] Mettre en place le binding bidirectionnel pour la recherche
 
-2. Composants UI principaux :
-  - Liste des flux
-  - Détail d'un article
-  - Barre de recherche
-  
-3. Navigation :
-- Configurer routing
-- Implémenter lazy loading
+### Composants UI principaux
+- [x] Créer la liste des flux
+- [x] Implémenter la barre de recherche
+- [x] Ajouter la fonctionnalité d'ajout de flux
+- [ ] Créer le composant de détail d'un article
 
+### Navigation
+- [ ] Configurer le routing de base
+- [ ] Implémenter le lazy loading pour les pages principales
+
+### Tests
+- [ ] Écrire des tests unitaires pour FeedService
+- [ ] Écrire des tests unitaires pour FeedListViewModel
+- [ ] Écrire des tests e2e basiques pour la liste des flux
 ## Ressources
 https://ionicframework.com/docs/components
