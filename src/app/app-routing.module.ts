@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { FeedListPage } from './pages/feed-list/feed-list.page';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'feed-list',
+    // lazyloading
     loadChildren: () => import('./pages/feed-list/feed-list.module').then( m => m.FeedListPageModule)
   },
 ];
