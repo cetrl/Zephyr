@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'feed-list',
+    loadChildren: () => import('./pages/feed-list/feed-list.module').then( m => m.FeedListPageModule)
+  },
 ];
 
 @NgModule({
