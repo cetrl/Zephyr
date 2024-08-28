@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Feed } from '../models/feed.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeedService {
+  private feedsSubject = new BehaviorSubject<Feed[]>([]);
+
+  constructor() {
+    // initialize with test datas if needed
+  }
+
   getFeeds(): Observable<Feed[]> {
-    // Simuler un appel API
-    return of([
-      { id: '1', title: 'Feed 1', url: 'http://example.com/feed1' },
-      { id: '2', title: 'Feed 2', url: 'http://example.com/feed2' }
-    ]);
+    return this.feedsSubject.asObservable();
+  }
+
+  addFeed(feed: Feed) {
+    const currentFeeds = this.feedsSubject.value;
+    this.feedsSubject.next([...currentFeeds, feed]);
   }
 }
