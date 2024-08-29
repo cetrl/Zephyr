@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/feed-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Article Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container *ngIf="vm.article$ | async as article">
+    <h1>{{ article.title }}</h1>
+    <p>Published: {{ article.publishDate | date }}</p>
+    <div [innerHTML]="article.content"></div>
+  </ng-container>
+</ion-content>
