@@ -8,9 +8,12 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ng-container *ngIf="vm.article$ | async as article">
+  <ng-container *ngIf="vm.article$ | async as article; else noArticle">
     <h1>{{ article.title }}</h1>
     <p>Published: {{ article.publishDate | date }}</p>
     <div [innerHTML]="article.content"></div>
   </ng-container>
+  <ng-template #noArticle>
+    <p>Article not found.</p>
+  </ng-template>
 </ion-content>

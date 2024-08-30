@@ -18,7 +18,8 @@ Readr is a RSS Feed Reader Android app.
 - [x] Créer la liste des flux
 - [x] Implémenter la barre de recherche
 - [x] Ajouter la fonctionnalité d'ajout de flux
-- [ ] Créer le composant de détail d'un article
+- [x] Créer le composant de détail d'un article
+- [ ] Composant latest articles
 
 ### Navigation
 - [ ] Configurer le routing de base
