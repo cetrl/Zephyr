@@ -14,7 +14,9 @@
 
   <ion-list>
     <ion-item *ngFor="let feed of vm.feeds$ | async">
-      {{ feed.title }}
+      <a [href]="feed.url" target="_blank" rel="noopener noreferrer">
+        {{ feed.title }}
+      </a>
     </ion-item>
   </ion-list>
 
