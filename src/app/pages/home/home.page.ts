@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Article } from '../../models/article.model';
+import { FeedService } from '../../services/feed.service';
+import { IonicModule } from '@ionic/angular';
+import { ArticlePreviewComponent } from '../../components/article-preview/article-preview.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule, ArticlePreviewComponent]
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  recentArticles$!: Observable<Article[]>;
 
-  constructor() {}
+  constructor(private feedService: FeedService) {}
 
+  ngOnInit() {
+    this.recentArticles$ = this.feedService.getRecentArticles();
+  }
 }

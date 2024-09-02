@@ -14,6 +14,10 @@ export class FeedService {
     // initialized with mock-data
   }
 
+  getRecentArticles(limit: number = 5): Observable<Article[]> {
+    return of(MOCK_ARTICLES.slice(0, limit));
+  }
+
   getFeeds(): Observable<Feed[]> {
     return this.feedsSubject.asObservable();
   }

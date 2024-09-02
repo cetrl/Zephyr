@@ -7,8 +7,9 @@
   <ion-button routerLink="/feed-list">Followed feeds</ion-button>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div id="container">
-    <h1>Welcome to Readr</h1>
-  </div>
+<ion-content class="ion-padding">
+  <h2>Recent Articles</h2>
+  <ng-container *ngIf="recentArticles$ | async as articles">
+    <app-article-preview *ngFor="let article of articles" [article]="article"></app-article-preview>
+  </ng-container>
 </ion-content>
