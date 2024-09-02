@@ -3,6 +3,6 @@ export interface Article {
   title: string;
   content: string;
   publishDate: Date;
-  publisher?: string;
+  author?: string;
   link: string;
 }

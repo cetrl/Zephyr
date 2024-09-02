@@ -26,7 +26,7 @@ export const MOCK_ARTICLES: Article[] = [
     title: 'New AI Breakthrough',
     content: 'Researchers have made a significant breakthrough in AI technology...',
     publishDate: new Date('2023-08-27T15:00:00Z'),
-    publisher: 'John Doe',
+    author: 'John Doe',
     link: 'https://technews.com/ai-breakthrough'
   },
   {
@@ -34,7 +34,7 @@ export const MOCK_ARTICLES: Article[] = [
     title: '5G Revolution',
     content: '5G technology is set to revolutionize mobile communications...',
     publishDate: new Date('2023-08-26T14:30:00Z'),
-    publisher: 'Jane Smith',
+    author: 'Jane Smith',
     link: 'https://technews.com/5g-revolution'
   },
   {
@@ -42,7 +42,7 @@ export const MOCK_ARTICLES: Article[] = [
     title: 'Mars Exploration Update',
     content: 'NASA\'s latest Mars rover has made an exciting discovery...' ,
     publishDate: new Date('2023-08-28T08:00:00Z'),
-    publisher: 'Emily Johnson',
+    author: 'Emily Johnson',
     link: 'https://sciencedaily.com/mars-exploration'
   },
   {
@@ -50,7 +50,7 @@ export const MOCK_ARTICLES: Article[] = [
     title: 'Global Climate Conference',
     content: 'World leaders gather to discuss urgent climate action...',
     publishDate: new Date('2023-08-27T19:00:00Z'),
-    publisher: 'Michael Brown',
+    author: 'Michael Brown',
     link: 'https://worldnews.com/climate-conference'
   }
 ];
