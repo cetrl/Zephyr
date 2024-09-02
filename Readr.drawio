@@ -260,7 +260,7 @@
           <mxGeometry x="142" y="900" width="60" height="60" as="geometry" />
         </mxCell>
         <mxCell id="QgCz3kuBdeEGVtZZMiBr-97" value="&lt;font color=&quot;#0066cc&quot; face=&quot;Courier New&quot;&gt;Page name&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Courier New;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="19.28" y="990" width="90" height="30" as="geometry" />
+          <mxGeometry x="320" y="900" width="90" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
