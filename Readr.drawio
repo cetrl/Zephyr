@@ -199,7 +199,7 @@
             <mxPoint x="150.80999999999995" y="420.75" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="QgCz3kuBdeEGVtZZMiBr-54" value="&lt;font color=&quot;#660033&quot;&gt;ArticleDetail&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#660033&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#660033&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#660033&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#660033&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#660033&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#660033&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+        <mxCell id="QgCz3kuBdeEGVtZZMiBr-54" value="&lt;font color=&quot;#660033&quot;&gt;ArticleDetail&lt;/font&gt;&lt;h3&gt;Title&lt;/h3&gt;&lt;p&gt;author, date&lt;br&gt;&lt;/p&gt;&lt;p&gt;[img]&lt;/p&gt;&lt;p&gt;content&lt;/p&gt;&lt;p&gt;keywords&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="32" y="433" width="110" height="190" as="geometry" />
         </mxCell>
       </root>
