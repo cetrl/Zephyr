@@ -26,6 +26,7 @@ Readr is a RSS Feed Reader Android app.
 - [ ] Implémenter le lazy loading pour les pages principales
 
 ### Tests
+- [ ] Cleaner .spec
 - [ ] Écrire des tests unitaires pour FeedService
 - [ ] Écrire des tests unitaires pour FeedListViewModel
 - [ ] Écrire des tests e2e basiques pour la liste des flux

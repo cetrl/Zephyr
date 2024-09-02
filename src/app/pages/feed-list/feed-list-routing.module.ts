@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { FeedListPage } from './feed-list.page';
-import { HomePage } from 'src/app/home/home.page';
+import { HomePage } from 'src/app/pages/home/home.page';
 
 const routes: Routes = [
   {
