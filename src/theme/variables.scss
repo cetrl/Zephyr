@@ -1,2 +1,12 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+@font-face {
+  font-family: 'Amiamie';
+  src: url('../assets/fonts/Amiamie-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --ion-font-family: 'Amiamie', sans-serif;
+}
