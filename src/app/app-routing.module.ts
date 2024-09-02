@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { FeedListPage } from './pages/feed-list/feed-list.page';
 
 const routes: Routes = [
   {
@@ -20,6 +19,11 @@ const routes: Routes = [
   {
     path: 'article-detail',
     loadChildren: () => import('./pages/article-detail/article-detail.module').then( m => m.ArticleDetailPageModule)
+  },
+
+  {
+    path: 'article/:id',
+    loadChildren: () => import('./pages/article-detail/article-detail.module').then(m => m.ArticleDetailPageModule)
   },
 ];
 
