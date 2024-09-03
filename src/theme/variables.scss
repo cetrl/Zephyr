@@ -1,5 +1,74 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+:root {
+  --ion-font-family: 'Amiamie', sans-serif;
+  --ion-background-color: #000;
+  --ion-text-color: #fff;
+
+	--ion-color-primary: #6D00EA;
+	--ion-color-primary-rgb: 109,0,234;
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-primary-contrast-rgb: 255,255,255;
+	--ion-color-primary-shade: #6000ce;
+	--ion-color-primary-tint: #7c1aec;
+
+	--ion-color-secondary: #A200FF;
+	--ion-color-secondary-rgb: 162,0,255;
+	--ion-color-secondary-contrast: #ffffff;
+	--ion-color-secondary-contrast-rgb: 255,255,255;
+	--ion-color-secondary-shade: #8f00e0;
+	--ion-color-secondary-tint: #ab1aff;
+
+	--ion-color-tertiary: #1DE4A4;
+	--ion-color-tertiary-rgb: 29,228,164;
+	--ion-color-tertiary-contrast: #000000;
+	--ion-color-tertiary-contrast-rgb: 0,0,0;
+	--ion-color-tertiary-shade: #1ac990;
+	--ion-color-tertiary-tint: #34e7ad;
+
+	--ion-color-success: #2dd55b;
+	--ion-color-success-rgb: 45,213,91;
+	--ion-color-success-contrast: #000000;
+	--ion-color-success-contrast-rgb: 0,0,0;
+	--ion-color-success-shade: #28bb50;
+	--ion-color-success-tint: #42d96b;
+
+	--ion-color-warning: #ffc409;
+	--ion-color-warning-rgb: 255,196,9;
+	--ion-color-warning-contrast: #000000;
+	--ion-color-warning-contrast-rgb: 0,0,0;
+	--ion-color-warning-shade: #e0ac08;
+	--ion-color-warning-tint: #ffca22;
+
+	--ion-color-danger: #c5000f;
+	--ion-color-danger-rgb: 197,0,15;
+	--ion-color-danger-contrast: #ffffff;
+	--ion-color-danger-contrast-rgb: 255,255,255;
+	--ion-color-danger-shade: #ad000d;
+	--ion-color-danger-tint: #cb1a27;
+
+	--ion-color-light: #f6f8fc;
+	--ion-color-light-rgb: 246,248,252;
+	--ion-color-light-contrast: #000000;
+	--ion-color-light-contrast-rgb: 0,0,0;
+	--ion-color-light-shade: #d8dade;
+	--ion-color-light-tint: #f7f9fc;
+
+	--ion-color-medium: #A084C0;
+	--ion-color-medium-rgb: 160,132,192;
+	--ion-color-medium-contrast: #000000;
+	--ion-color-medium-contrast-rgb: 0,0,0;
+	--ion-color-medium-shade: #8d74a9;
+	--ion-color-medium-tint: #aa90c6;
+
+	--ion-color-dark: #2f2f2f;
+	--ion-color-dark-rgb: 47,47,47;
+	--ion-color-dark-contrast: #ffffff;
+	--ion-color-dark-contrast-rgb: 255,255,255;
+	--ion-color-dark-shade: #292929;
+	--ion-color-dark-tint: #444444;
+}
+
 @font-face {
   font-family: 'Amiamie';
   src: url('../assets/fonts/Amiamie-Regular.woff') format('woff');
@@ -7,6 +76,18 @@
   font-style: normal;
 }
 
-:root {
-  --ion-font-family: 'Amiamie', sans-serif;
+@media (prefers-color-scheme: dark) {
+  .ios body, .md body {
+    --ion-card-color: var(--ion-color-light);
+    --ion-card-title: var(--ion-color-light);
+    --ion-item-color: var(--ion-color-light);
+    --ion-color-step-550: var(--ion-color-light);
+    --ion-text-color-step-450: var(--ion-color-light);
+  }
+
+  ion-card-title {
+    --color: var(--ion-color-medium);
+  }
 }
+
+a {color: var(--ion-color-tertiary);}
