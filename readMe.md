@@ -1,5 +1,5 @@
-# Readr
-Readr is a RSS Feed Reader Android app.
+# Zephyr
+Zephyr is a RSS Feed Reader Android app.
 
 ## Techs
 - Angular
