@@ -1,7 +1,8 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
 :root {
-  --ion-font-family: 'Amiamie', sans-serif;
+
+  --ion-font-family: 'Literata', sans-serif;
   --ion-background-color: #000;
   --ion-text-color: #fff;
 
@@ -69,9 +70,27 @@
 	--ion-color-dark-tint: #444444;
 }
 
+ion-title {
+  font-family: 'Compagnon-Italic', cursive;
+  font-size: 2em;
+  }
 @font-face {
   font-family: 'Amiamie';
   src: url('../assets/fonts/Amiamie-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Compagnon-Roman';
+  src: url('../assets/fonts/Compagnon-Roman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Compagnon-Italic';
+  src: url('../assets/fonts/Compagnon-Italic.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
