@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "zephyr": {
+    "app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
