@@ -1,8 +1,12 @@
+Voici le README mis à jour en fonction des dernières informations :
+
 # Zephyr
 
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![Ionic](https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white)
 ![Capacitor](https://img.shields.io/badge/Capacitor-119EFF?style=for-the-badge&logo=Capacitor&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
 Zephyr is a modern RSS Feed Reader Android app that allows users to stay updated with their favorite content sources in one place.
 
@@ -14,9 +18,8 @@ Zephyr is a modern RSS Feed Reader Android app that allows users to stay updated
 
 ## Technologies
 
-- Angular 16
-- Ionic 7
-- Capacitor
+- Frontend: Angular 16, Ionic 7, Capacitor
+- Backend: Express.js, MongoDB
 
 ## Installation
 
@@ -52,52 +55,57 @@ src/
 └── environments/
 ```
 
+## Development Branches
+
+- `front`: Contains the latest version of the frontend without XML parsing
+- `back`: Development branch for the backend (Express.js and MongoDB)
+- `main`: Stable versions integrating both frontend and backend
 
 ## Todo
 
-### Architecture MVVM
-- [x] Implémenter la structure de base MVVM
-- [x] Créer le modèle Feed
-- [x] Implémenter FeedService
-- [x] Créer FeedListViewModel
-- [x] Mettre en place le binding bidirectionnel pour la recherche
+### Frontend
+- [x] Implement basic MVVM structure
+- [x] Create Feed model
+- [x] Implement FeedService
+- [x] Create FeedListViewModel
+- [x] Set up two-way binding for search
+- [x] Create main UI components (feed list, search bar, article detail)
+- [ ] Implement lazy loading for main pages
+- [ ] Update UI to display feed items from API
+- [ ] Implement error handling and loading indicators
+- [ ] Add manual refresh functionality
+- [ ] Implement feed item sorting
 
-### Composants UI principaux
-- [x] Créer la liste des flux
-- [x] Implémenter la barre de recherche
-- [x] Ajouter la fonctionnalité d'ajout de flux
-- [x] Créer le composant de détail d'un article
-- [x] Composant latest articles
+### Backend
+- [ ] Set up Express.js and MongoDB environment
+- [ ] Create data models for feeds and articles
+- [ ] Implement basic API routes
+- [ ] Develop logic for fetching and storing articles
+- [ ] Implement XML parsing on the server side
+- [ ] Create RESTful API for managing RSS feeds (CRUD operations)
+- [ ] Implement periodic article fetching
+- [ ] Provide endpoints for retrieving articles
 
-### Navigation
-- [x] Configurer le routing de base
-- [ ] Implémenter le lazy loading pour les pages principales
+### Integration
+- [ ] Update frontend services to consume backend API
+- [ ] Implement authentication and user management
+- [ ] Sync user preferences between frontend and backend
 
-### Lecture de flux RSS
-- [ ] Installer et configurer xml2js
-- [ ] Créer XmlParserService
-- [ ] Implémenter la détection et le parsing des différents formats (RSS 2.0, Atom, RSS 1.0)
-- [ ] Mettre à jour FeedService pour intégrer le parsing XML
-- [ ] Créer une interface FeedItem pour normaliser les données des flux
-- [ ] Mettre à jour l'UI pour afficher les éléments du flux
-- [ ] Implémenter la gestion des erreurs et les indicateurs de chargement
-- [ ] Ajouter une fonctionnalité de rafraîchissement manuel
-- [ ] Implémenter le tri des éléments du flux
+### Optimization and Performance
+- [ ] Implement feed caching
+- [ ] Optimize image loading (lazy loading)
 
-### Optimisation et Performance
-- [ ] Mettre en place la mise en cache des flux
-- [ ] Optimiser le chargement des images (lazy loading)
-
-### Tests
-- [ ] Cleaner .spec
-- [ ] tests unitaires FeedService
-- [ ] tests unitaires FeedListViewModel
-- [ ] tests unitaires XmlParserService
-- [ ] tests e2e basiques liste des flux
+### Testing
+- [ ] Clean up .spec files
+- [ ] Write unit tests for FeedService
+- [ ] Write unit tests for FeedListViewModel
+- [ ] Write unit tests for backend services
+- [ ] Implement basic e2e tests for feed list
 
 ### Documentation
-- [ ] Mettre à jour la documentation des services et composants
-- [ ] Documenter le processus de parsing XML et de gestion des flux
+- [ ] Update service and component documentation
+- [ ] Document XML parsing process and feed management
+- [ ] Create API documentation
 
 ## Testing
 
@@ -109,7 +117,7 @@ ng test
 
 ## Contact
 
-Célia - [cetrl@proton.me](cetrl@proton.me)
+Célia - [cetrl@proton.me](mailto:cetrl@proton.me)
 
 Project Link: [https://github.com/cetrl/Zephyr](https://github.com/cetrl/Zephyr)
 
@@ -118,9 +126,13 @@ Project Link: [https://github.com/cetrl/Zephyr](https://github.com/cetrl/Zephyr)
 - [Ionic Framework](https://ionicframework.com/)
 - [Angular](https://angular.io/)
 - [Capacitor](https://capacitorjs.com/)
+- [Express.js](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
 
 ## Resources
 
 - [Ionic Framework Components](https://ionicframework.com/docs/components)
 - [RSS 2.0 Specification](https://www.rssboard.org/rss-specification)
 - [Atom Syndication Format](https://tools.ietf.org/html/rfc4287)
+- [Express.js Documentation](https://expressjs.com/en/4x/api.html)
+- [MongoDB Documentation](https://docs.mongodb.com/)
