@@ -1,41 +1,65 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+// import { BehaviorSubject, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Feed } from '../models/feed.model';
-import { Article } from '../models/article.model';
-import { MOCK_FEEDS, MOCK_ARTICLES } from '../mock-data';
+// import { Article } from '../models/article.model';
+// import { MOCK_FEEDS, MOCK_ARTICLES } from '../mock-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeedService {
-  private feedsSubject = new BehaviorSubject<Feed[]>(MOCK_FEEDS);
+  private url = 'http://localhost:5200';
+  feeds$ = signal<Feed[]>([]);
+  feed$ = signal<Feed>({} as Feed);
 
-  constructor() {
-    // initialized with mock-data
+  constructor(private httpClient: HttpClient) {
+  }
+  private refreshFeeds() {
+    this.httpClient.get<Feed[]>(`${this.url}/feeds`)
+      .subscribe(feeds => {
+        this.feeds$.set(feeds);
+      });
   }
 
-  getRecentArticles(limit: number = 5): Observable<Article[]> {
-    return of(MOCK_ARTICLES.slice(0, limit));
+  getFeeds() {
+    this.refreshFeeds();
+    return this.feeds$();
   }
 
-  getFeeds(): Observable<Feed[]> {
-    return this.feedsSubject.asObservable();
+  getFeed(id: string) {
+    this.httpClient.get<Feed>(`${this.url}/feeds/${id}`).subscribe(feed => {
+      this.feed$.set(feed);
+      return this.feed$();
+    });
   }
 
   addFeed(feed: Feed) {
-    const currentFeeds = this.feedsSubject.value;
-    const newFeed = { ...feed, id: Date.now().toString() };
-    this.feedsSubject.next([...currentFeeds, feed]);
+    return this.httpClient.post(`${this.url}/feeds`, feed, { responseType: 'text' });
   }
 
-  getArticle(id: string): Observable<Article | undefined> {
-    const article = MOCK_ARTICLES.find(a => a.id === id);
-    return of(article);
+  updateFeed(id: string, feed: Feed) {
+    return this.httpClient.put(`${this.url}/feeds/${id}`, feed, { responseType: 'text' });
   }
 
-  getArticlesForFeed(feedId: string): Observable<Article[]> {
-    const articles = MOCK_ARTICLES.filter(a => a.id === feedId);
-    return of(articles);
-
+  deleteFeed(id: string) {
+    return this.httpClient.delete(`${this.url}/feeds/${id}`, { responseType: 'text' });
   }
+
+
+  // private feedsSubject = new BehaviorSubject<Feed[]>(MOCK_FEEDS);
+
+  // constructor() {
+  //   // initialized with mock-data
+  // }
+
+  // getFeeds(): Observable<Feed[]> {
+  //   return this.feedsSubject.asObservable();
+  // }
+
+  // addFeed(feed: Feed) {
+  //   const currentFeeds = this.feedsSubject.value;
+  //   const newFeed = { ...feed, id: Date.now().toString() };
+  //   this.feedsSubject.next([...currentFeeds, feed]);
+  // }
 }
