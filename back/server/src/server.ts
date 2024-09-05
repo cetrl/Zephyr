@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import express from "express";
 import cors from "cors";
 import { connectToDatabase } from "./database";
+import { feedRouter } from './feed.routes';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ connectToDatabase(ATLAS_URI)
     .then(() => {
         const app = express();
         app.use(cors());
+        app.use("/feeds", feedRouter);
 
         //start the Express server
         app.listen(5200, () => {

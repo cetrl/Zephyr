@@ -66,3 +66,23 @@ feedRouter.put("/:id", async (req, res) =>{
         res.status(400).send(message);
     }
 });
+
+feedRouter.delete("/:id", async (req, res) => {
+    try {
+        const id = req?.params?.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await collections?.feeds?.deleteOne(query);
+
+        if (result && result.deletedCount) {
+            res.status(202).send(`Removed an feed: ID ${id}`);
+        } else if (!result) {
+            res.status(400).send(`Failed to remove an feed: ID ${id}`);
+        } else if (!result.deletedCount) {
+            res.status(404).send(`Failed to find an feed: ID ${id}`);
+        }
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Unknown error";
+        console.error(message);
+        res.status(400).send(message);
+    }
+});
