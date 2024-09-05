@@ -1,8 +1,9 @@
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv'; 
 import express from "express";
 import cors from "cors";
 import { connectToDatabase } from "./database";
 
+dotenv.config();
 const { ATLAS_URI } = process.env;
 
 if(!ATLAS_URI) {
