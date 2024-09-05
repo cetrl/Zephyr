@@ -1,8 +1,8 @@
 import * as mongodb from "mongodb";
-import { Feeds } from "./feeds";
+import { Feed } from "./feed";
 
 export const collections: {
-    feeds?: mongodb.Collection<Feeds>;
+    feeds?: mongodb.Collection<Feed>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -12,7 +12,7 @@ export async function connectToDatabase(uri: string) {
     const db = client.db("meanStackExample");
     await applySchemaValidation(db);
 
-    const feedsCollection = db.collection<Feeds>("feeds");
+    const feedsCollection = db.collection<Feed>("feeds");
     collections.feeds = feedsCollection;
 }
 

@@ -1,6 +1,6 @@
 import * as mongodb from "mongodb";
 
-export interface Feeds {
+export interface Feed {
     name: string;
     url: string;
     _id?: mongodb.ObjectId;
