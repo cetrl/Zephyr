@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import express from "express";
 import cors from "cors";
 import { connectToDatabase } from "./database";
-import { feedRouter } from './feed.routes';
+import { feedRouter } from './routes/feed.routes';
 
 dotenv.config();
 
