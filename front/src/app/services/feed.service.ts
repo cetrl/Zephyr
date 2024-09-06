@@ -1,9 +1,9 @@
 import { Injectable, signal } from '@angular/core';
-// import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Feed } from '../models/feed.model';
-// import { Article } from '../models/article.model';
-// import { MOCK_FEEDS, MOCK_ARTICLES } from '../mock-data';
+import { Article } from '../models/article.model';
+import { MOCK_ARTICLES } from '../mock-data';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +12,14 @@ export class FeedService {
   private url = 'http://localhost:5200';
   feeds$ = signal<Feed[]>([]);
   feed$ = signal<Feed>({} as Feed);
+  private articles: Article[] = MOCK_ARTICLES;
+
 
   constructor(private httpClient: HttpClient) {
   }
-  private refreshFeeds() {
-    this.httpClient.get<Feed[]>(`${this.url}/feeds`)
-      .subscribe(feeds => {
-        this.feeds$.set(feeds);
-      });
-  }
 
-  getFeeds() {
-    this.refreshFeeds();
-    return this.feeds$();
+  getFeeds(): Observable<Feed[]> {
+    return this.httpClient.get<Feed[]>(`${this.url}/feeds`);
   }
 
   getFeed(id: string) {
@@ -46,20 +41,13 @@ export class FeedService {
     return this.httpClient.delete(`${this.url}/feeds/${id}`, { responseType: 'text' });
   }
 
+  getRecentArticles(): Observable<Article[]> {
+    return of(this.articles);
+  }
 
-  // private feedsSubject = new BehaviorSubject<Feed[]>(MOCK_FEEDS);
+  getArticle(id: string): Observable<Article | undefined> {
+    const article = MOCK_ARTICLES.find(a => a.id === id);
+    return of(article);
+  }
 
-  // constructor() {
-  //   // initialized with mock-data
-  // }
-
-  // getFeeds(): Observable<Feed[]> {
-  //   return this.feedsSubject.asObservable();
-  // }
-
-  // addFeed(feed: Feed) {
-  //   const currentFeeds = this.feedsSubject.value;
-  //   const newFeed = { ...feed, id: Date.now().toString() };
-  //   this.feedsSubject.next([...currentFeeds, feed]);
-  // }
 }

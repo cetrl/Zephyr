@@ -1,33 +1,33 @@
 import { Feed } from './models/feed.model';
 import { Article } from './models/article.model';
 
-export const MOCK_FEEDS: Feed[] = [
-  {
-    id: '1',
-    title: 'Cyberfeminism Index',
-    url: 'https://cyberfeminismindex.com/'
-  },
-  {
-    id: '2',
-    title: 'Legacy Russell',
-    url: 'https://legacyrussell.com/'
-  },
-  {
-    id: '3',
-    title: 'Rhizome',
-    url: 'https://rhizome.org/'
-  },
-  {
-    id: '4',
-    title: 'Mindy Seu',
-    url: 'https://mindyseu.com/'
-  },
-  {
-    id: '5',
-    title: 'The New Museum',
-    url: 'https://www.newmuseum.org/'
-  }
-];
+// export const MOCK_FEEDS: Feed[] = [
+//   {
+//     id: '1',
+//     name: 'Cyberfeminism Index',
+//     url: 'https://cyberfeminismindex.com/'
+//   },
+//   {
+//     id: '2',
+//     name: 'Legacy Russell',
+//     url: 'https://legacyrussell.com/'
+//   },
+//   {
+//     id: '3',
+//     name: 'Rhizome',
+//     url: 'https://rhizome.org/'
+//   },
+//   {
+//     id: '4',
+//     name: 'Mindy Seu',
+//     url: 'https://mindyseu.com/'
+//   },
+//   {
+//     id: '5',
+//     name: 'The New Museum',
+//     url: 'https://www.newmuseum.org/'
+//   }
+// ];
 
 export const MOCK_ARTICLES: Article[] = [
   {

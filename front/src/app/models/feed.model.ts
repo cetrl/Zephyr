@@ -1,5 +1,5 @@
 export interface Feed {
   _id?: string;
-  title: string;
+  name: string;
   url: string;
 }

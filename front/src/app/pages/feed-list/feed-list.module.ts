@@ -8,6 +8,8 @@ import { FeedListPageRoutingModule } from './feed-list-routing.module';
 
 import { FeedListPage } from './feed-list.page';
 
+import { FeedListViewModel } from 'src/app/view-models/feed-list.view-model';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,9 @@ import { FeedListPage } from './feed-list.page';
     IonicModule,
     FeedListPageRoutingModule
   ],
-  declarations: [FeedListPage]
+  declarations: [FeedListPage],
+
+  providers: [FeedListViewModel]
 })
 export class FeedListPageModule {}
+
