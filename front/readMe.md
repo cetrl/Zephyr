@@ -53,51 +53,42 @@ src/
 ```
 
 
-## Todo
+## Todo Backend
 
-### Architecture MVVM
-- [x] Implémenter la structure de base MVVM
-- [x] Créer le modèle Feed
-- [x] Implémenter FeedService
-- [x] Créer FeedListViewModel
-- [x] Mettre en place le binding bidirectionnel pour la recherche
+### Configuration de base
+- [x] Initialiser le projet Node.js
+- [x] Configurer Express.js
+- [x] Mettre en place la structure de base du projet
 
-### Composants UI principaux
-- [x] Créer la liste des flux
-- [x] Implémenter la barre de recherche
-- [x] Ajouter la fonctionnalité d'ajout de flux
-- [x] Créer le composant de détail d'un article
-- [x] Composant latest articles
+### Base de données
+- [x] Configurer la connexion MongoDB
+- [ ] Créer les schémas pour Feed et Article
 
-### Navigation
-- [x] Configurer le routing de base
-- [ ] Implémenter le lazy loading pour les pages principales
+### Parsing RSS
+- [ ] Intégrer une bibliothèque de parsing RSS (ex: rss-parser)
+- [ ] Créer un service pour récupérer et parser les flux RSS
+- [ ] Implémenter la logique de mise à jour périodique des feeds
 
-### Lecture de flux RSS
-- [ ] Installer et configurer xml2js
-- [ ] Créer XmlParserService
-- [ ] Implémenter la détection et le parsing des différents formats (RSS 2.0, Atom, RSS 1.0)
-- [ ] Mettre à jour FeedService pour intégrer le parsing XML
-- [ ] Créer une interface FeedItem pour normaliser les données des flux
-- [ ] Mettre à jour l'UI pour afficher les éléments du flux
-- [ ] Implémenter la gestion des erreurs et les indicateurs de chargement
-- [ ] Ajouter une fonctionnalité de rafraîchissement manuel
-- [ ] Implémenter le tri des éléments du flux
+### Authentification
+- [ ] Mettre en place l'authentification
+- [ ] routes pour l'inscription et la connexion
+- [ ] Sécuriser routes appropriées
 
-### Optimisation et Performance
-- [ ] Mettre en place la mise en cache des flux
-- [ ] Optimiser le chargement des images (lazy loading)
+### Gestion des erreurs
+- [ ] middleware de gestion globale des erreurs
+- [ ] logs détaillés
 
 ### Tests
-- [ ] Cleaner .spec
-- [ ] tests unitaires FeedService
-- [ ] tests unitaires FeedListViewModel
-- [ ] tests unitaires XmlParserService
-- [ ] tests e2e basiques liste des flux
+- [ ] Config environnement de test (ex: Jest)
+- [ ] Écrire des tests unitaires pour les services
+- [ ] Écrire des tests d'intégration pour les routes API
+
+### Optimisation
+- [ ] Implémenter la pagination pour les listes de feeds et d'articles
+- [ ] Mettre en cache les résultats fréquemment demandés
 
 ### Documentation
-- [ ] Mettre à jour la documentation des services et composants
-- [ ] Documenter le processus de parsing XML et de gestion des flux
+- [ ] Mettre à jour le README avec les instructions d'installation et d'utilisation
 
 ## Testing
 
