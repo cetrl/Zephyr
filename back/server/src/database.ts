@@ -14,18 +14,40 @@ export async function connectToDatabase(uri: string) {
     await client.connect();
 
     const db = client.db("zephyr");
-    await applyFeedSchema(db);
+    await applySchemaValidation(db);
 
     collections.feeds = db.collection<Feed>("feeds");
     collections.users = db.collection<User>("users");
     collections.articles = db.collection<Article>("articles");
 }
 
-async function applyFeedSchema(db: mongodb.Db) {
+async function applySchemaValidation(db: mongodb.Db) {
     await applyFeedSchema(db);
     await applyUserSchema(db);
     await applyArticleSchema(db);
-}
+};
+
+async function applyFeedSchema(db: mongodb.Db){
+    const jsonSchema = {
+        $jsonSchema: {
+                bsonType:"object",
+                required: ["name", "url"],
+                additionalProperties:true,
+                properties: {
+                    _id: { bsonType: ['objectId', 'null'] },
+                    name: {
+                        bsonType:"string",
+                        description: "'name' is required and is a string",
+                    },
+                    url: {
+                        bsonType:"string",
+                        description: "'url' is required and is a string",
+                    }
+                }
+        }
+    }
+    await createOrUpdateCollection(db, "feeds", jsonSchema);
+};
 
 async function applyUserSchema(db: mongodb.Db) {
     const jsonSchema = {
