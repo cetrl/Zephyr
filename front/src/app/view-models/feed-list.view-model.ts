@@ -36,7 +36,6 @@ export class FeedListViewModel {
 
   addFeed(name: string, url: string): void {
     const newFeed: Feed = {
-      _id: Date.now().toString(), // praying to the id gods
       name,
       url,
     };
