@@ -1,22 +1,19 @@
-# Zephyr
+# Zephyr Backend
 
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![Ionic](https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white)
-![Capacitor](https://img.shields.io/badge/Capacitor-119EFF?style=for-the-badge&logo=Capacitor&logoColor=white)
-
-Zephyr is a modern RSS Feed Reader Android app that allows users to stay updated with their favorite content sources in one place.
+This is the backend for the Zephyr RSS reader application, built with Node.js, Express, and MongoDB.
 
 ## Features
 
-- Aggregate multiple RSS feeds
-- User-friendly interface for easy navigation
-- Search functionality across all feeds
+- MongoDB integration with schema validation
+- RESTful API for feeds, articles, and users
+- XML parsing for RSS feeds
+- Authentication system (in progress)
 
-## Technologies
+## Prerequisites
 
-- Angular 16
-- Ionic 7
-- Capacitor
+- Node.js (v14 or later)
+- MongoDB (v4.4 or later)
+- npm (v6 or later)
 
 ## Installation
 
@@ -32,26 +29,25 @@ Zephyr is a modern RSS Feed Reader Android app that allows users to stay updated
    ```
    npm install
    ```
-4. Run the development server:
+4. Create a `.env` file in the root directory and add your MongoDB URI:
+MONGO_URI=mongodb://localhost:27017/zephyr
+
+5. Start the back server:
+npm start
+
+6. Run the development server:
    ```
    ionic serve
    ```
+   
+## API Endpoints
 
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   ├── view-models/
-│   └── models/
-├── assets/
-├── themes/
-└── environments/
-```
-
+- `GET /api/feeds`: Get all feeds
+- `POST /api/feeds`: Create a new feed
+- `GET /api/articles`: Get all articles
+- `GET /api/articles/:id`: Get a specific article
+- `POST /api/users`: Create a new user
+- `GET /api/users/:id`: Get a specific user
 
 ## Todo Backend
 
@@ -62,7 +58,7 @@ src/
 
 ### Base de données
 - [x] Configurer la connexion MongoDB
-- [ ] Créer les schémas pour Feed et Article
+- [x] Créer les schémas pour Feed et Article
 
 ### Parsing RSS
 - [ ] Intégrer une bibliothèque de parsing RSS (ex: rss-parser)

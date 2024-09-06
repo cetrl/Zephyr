@@ -46,7 +46,7 @@ export class FeedService {
   }
 
   getArticle(id: string): Observable<Article | undefined> {
-    const article = MOCK_ARTICLES.find(a => a.id === id);
+    const article = MOCK_ARTICLES.find(a => a._id === id);
     return of(article);
   }
 
