@@ -1,6 +1,7 @@
 import * as express from "express";
 import { ObjectId } from "mongodb";
 import { collections } from "../database";
+import { parseRssFeed } from '../services/rss-parser';
 
 export const feedRouter = express.Router();
 feedRouter.use(express.json());
@@ -14,21 +15,23 @@ feedRouter.get("/", async (_req, res) => {
     }
 });
 
-feedRouter.get("/:id", async (req, res) => {
+feedRouter.get("/fetch/:id", async (req, res) => {
     try {
-        const id = req?.params?.id;
-        const query = { _id: new ObjectId(id) };
-        const feed = await collections?.feeds?.findOne(query);
-
-        if (feed) {
-            res.status(200).send(feed);
-        } else {
-            res.status(404).send(`Failed to find a feed: ID ${id}`);
-        }
+      const id = req.params.id;
+      const feed = await collections?.feeds?.findOne({ _id: new ObjectId(id) });
+      console.log('Feed found:', feed);
+      if (feed && feed.url) {
+        console.log('Attempting to parse feed:', feed.url);
+        const parsedFeed = JSON.parse(await parseRssFeed(feed.url));
+        console.log('Parsed feed:', JSON.stringify(parsedFeed, null, 2));
+      } else {
+        res.status(404).send('Feed not found');
+      }
     } catch (error) {
-        res.status(404).end(`Failed to find feed: ID ${req?.params?.id}`);
+      console.error('Error fetching feed:', error);
+      res.status(500).send(`Error fetching feed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
-});
+  });
 
 feedRouter.post("/", async (req, res) => {
     try {
