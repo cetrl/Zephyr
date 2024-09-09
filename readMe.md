@@ -33,7 +33,9 @@ This is the backend for the Zephyr RSS reader application, built with Node.js, E
 MONGO_URI=mongodb://localhost:27017/zephyr
 
 5. Start the back server:
-npm start
+   ```
+   npx ts-node src/server.ts
+   ```
 
 6. Run the development server:
    ```
@@ -61,9 +63,15 @@ npm start
 - [x] Créer les schémas pour Feed et Article
 
 ### Parsing RSS
-- [ ] Intégrer une bibliothèque de parsing RSS (ex: rss-parser)
-- [ ] Créer un service pour récupérer et parser les flux RSS
+- [x] Intégrer une bibliothèque de parsing RSS
+- [x] Créer un service pour récupérer et parser les flux RSS
 - [ ] Implémenter la logique de mise à jour périodique des feeds
+
+- [x] Fetch URLs: Retrieve feed URLs from database
+- [x] Parse XML: Use xml2js to convert XML to JSON
+- [ ] Transform data: Map JSON to Article format
+- [ ] Store data: Save transformed articles to database
+- [ ] Angular view: Fetch and display articles in TypeScript
 
 ### Authentification
 - [ ] Mettre en place l'authentification
