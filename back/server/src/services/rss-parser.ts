@@ -6,8 +6,6 @@ export async function parseRssFeed(url: string): Promise<any> {
   if (!url.startsWith('http://') && !url.startsWith('https://')) {
     url = 'https://' + url;
   }
-  
-  console.log('Parsing URL:', url);
 
   try {
     const xmlRawData = await fetchXml(url);

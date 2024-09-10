@@ -53,8 +53,8 @@ MONGO_URI=mongodb://localhost:27017/zephyr
 
 ## Sprint 1 (2,5 j)
 (0,5j)
-- [ ] Improve route organization 
-- [ ] Standardize API responses (réécrire routes)
+- [x] Improve route organization 
+- [x] Standardize API responses (réécrire routes)
 
 (1j)
 - [ ] déploiement back

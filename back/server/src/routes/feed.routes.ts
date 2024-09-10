@@ -19,11 +19,8 @@ feedRouter.get("/fetch/:id", async (req, res) => {
     try {
       const id = req.params.id;
       const feed = await collections?.feeds?.findOne({ _id: new ObjectId(id) });
-      console.log('Feed found:', feed);
       if (feed && feed.url) {
-        console.log('Attempting to parse feed:', feed.url);
         const parsedFeed = JSON.parse(await parseRssFeed(feed.url));
-        console.log('Parsed feed:', JSON.stringify(parsedFeed, null, 2));
       } else {
         res.status(404).send('Feed not found');
       }
