@@ -1,6 +1,6 @@
-# Zephyr Backend
+# Zephyrss Backend
 
-This is the backend for the Zephyr RSS reader application, built with Node.js, Express, and MongoDB.
+This is the backend for the Zephyrss RSS reader application, built with Node.js, Express, and MongoDB.
 
 ## Features
 
@@ -65,13 +65,14 @@ MONGO_URI=mongodb://localhost:27017/zephyr
 ### Parsing RSS
 - [x] Intégrer une bibliothèque de parsing RSS
 - [x] Créer un service pour récupérer et parser les flux RSS
-- [ ] Implémenter la logique de mise à jour périodique des feeds
-
 - [x] Fetch URLs: Retrieve feed URLs from database
 - [x] Parse XML: Use xml2js to convert XML to JSON
-- [ ] Transform data: Map JSON to Article format
-- [ ] Store data: Save transformed articles to database
-- [ ] Angular view: Fetch and display articles in TypeScript
+- [ ] Implémenter la logique de mise à jour périodique des feeds
+
+## API Improvements 
+- [ ] Standardize API responses
+- [ ] Improve route organization
+- [ ] Start API documentation with Swagger/OpenAPI
 
 ### Authentification
 - [ ] Mettre en place l'authentification
@@ -82,14 +83,13 @@ MONGO_URI=mongodb://localhost:27017/zephyr
 - [ ] middleware de gestion globale des erreurs
 - [ ] logs détaillés
 
+### Optimisation
+- [ ] Mettre en cache les résultats fréquemment demandés
+
 ### Tests
 - [ ] Config environnement de test (ex: Jest)
 - [ ] Écrire des tests unitaires pour les services
 - [ ] Écrire des tests d'intégration pour les routes API
-
-### Optimisation
-- [ ] Implémenter la pagination pour les listes de feeds et d'articles
-- [ ] Mettre en cache les résultats fréquemment demandés
 
 ### Documentation
 - [ ] Mettre à jour le README avec les instructions d'installation et d'utilisation
