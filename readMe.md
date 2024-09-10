@@ -51,56 +51,39 @@ MONGO_URI=mongodb://localhost:27017/zephyr
 - `POST /api/users`: Create a new user
 - `GET /api/users/:id`: Get a specific user
 
-## Todo Backend
+## Sprint 1 (2,5 j)
+(0,5j)
+- [ ] Improve route organization 
+- [ ] Standardize API responses (réécrire routes)
 
-### Configuration de base
-- [x] Initialiser le projet Node.js
-- [x] Configurer Express.js
-- [x] Mettre en place la structure de base du projet
+(1j)
+- [ ] déploiement back
 
-### Base de données
-- [x] Configurer la connexion MongoDB
-- [x] Créer les schémas pour Feed et Article
+(1j)
+- [ ] branchement de l'api au front
 
-### Parsing RSS
-- [x] Intégrer une bibliothèque de parsing RSS
-- [x] Créer un service pour récupérer et parser les flux RSS
-- [x] Fetch URLs: Retrieve feed URLs from database
-- [x] Parse XML: Use xml2js to convert XML to JSON
-- [ ] Implémenter la logique de mise à jour périodique des feeds
-
-## API Improvements 
-- [ ] Standardize API responses
-- [ ] Improve route organization
-- [ ] Start API documentation with Swagger/OpenAPI
-
-### Authentification
+## Sprint 2 (3 j)
+(0,5j)
+- [ ] Formulaire sign in/sign up 
+(1j)
 - [ ] Mettre en place l'authentification
 - [ ] routes pour l'inscription et la connexion
-- [ ] Sécuriser routes appropriées
+(1j)
+- [ ] déploiement mobile
+(0,5j)
+- [ ] Mettre à jour le README avec les instructions d'installation et d'utilisation
+- [ ] Démo
 
-### Gestion des erreurs
-- [ ] middleware de gestion globale des erreurs
-- [ ] logs détaillés
-
-### Optimisation
+## Nice to Have
+- [ ] Formulaire mdp oublié 
+- [ ] Start API documentation with Swagger/OpenAPI
+- [ ] stocker id articles fav
+- [ ] routes pour le mdp oublié (envoi email, token,...)
 - [ ] Mettre en cache les résultats fréquemment demandés
-
 ### Tests
 - [ ] Config environnement de test (ex: Jest)
 - [ ] Écrire des tests unitaires pour les services
 - [ ] Écrire des tests d'intégration pour les routes API
-
-### Documentation
-- [ ] Mettre à jour le README avec les instructions d'installation et d'utilisation
-
-## Testing
-
-Run the following command to execute the unit tests:
-
-```
-ng test
-```
 
 ## Contact
 
