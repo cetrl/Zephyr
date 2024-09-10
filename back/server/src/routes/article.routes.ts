@@ -6,7 +6,8 @@ import { parseRssFeed } from '../services/rss-parser';
 export default function(db: Db) {
     const router = express.Router();
 
-    // route retrieving a specific article from a feed
+    // route retrieving a specific article from a feed 
+    // index start at last article
     router.get('/:feedId/:index', async (req, res) => {
         const { feedId, index } = req.params;
         

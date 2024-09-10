@@ -64,12 +64,15 @@ MONGO_URI=mongodb://localhost:27017/zephyr
 
 ## Sprint 2 (3 j)
 (0,5j)
-- [ ] Formulaire sign in/sign up 
+- [ ] Formulaire sign in/sign up
+
 (1j)
 - [ ] Mettre en place l'authentification
 - [ ] routes pour l'inscription et la connexion
+
 (1j)
 - [ ] déploiement mobile
+
 (0,5j)
 - [ ] Mettre à jour le README avec les instructions d'installation et d'utilisation
 - [ ] Démo
