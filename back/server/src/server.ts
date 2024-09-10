@@ -1,29 +1,26 @@
-import * as dotenv from 'dotenv'; 
-import express from "express";
-import cors from "cors";
-import { connectToDatabase } from "./database";
+import { config } from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import { connectToDatabase } from './database';
 import { feedRouter } from './routes/feed.routes';
+import articleRoutes from './routes/article.routes';
 
-dotenv.config();
+config();
 
 const { ATLAS_URI } = process.env;
 
-if(!ATLAS_URI) {
-    console.error(
-        "No ATLAS_URI environment variable has been defined in config.env"
-    );
+if (!ATLAS_URI) {
+    console.error('No ATLAS_URI environment variable has been defined in config.env');
     process.exit(1);
 }
 
 connectToDatabase(ATLAS_URI)
-    .then(() => {
+    .then((db) => {
         const app = express();
         app.use(cors());
-        app.use("/feeds", feedRouter);
+        app.use('/feeds', feedRouter);
+        app.use('/articles', articleRoutes(db));
 
-        //start the Express server
-        app.listen(5200, () => {
-            console.log(`Server running at http://localhost:5200`)
-        });
+        app.listen(5200, () => console.log('Server running at http://localhost:5200'));
     })
-    .catch((error) => console.error(error));
+    .catch(console.error);

@@ -1,31 +1,47 @@
-import * as express from "express";
-import { ObjectId } from "mongodb";
-import { collections } from "../database";
+import express from 'express';
+import { ObjectId, Db } from 'mongodb';
+import { Feed } from '../models/feed';
+import { parseRssFeed } from '../services/rss-parser';
 
-export const articleRouter = express.Router();
-articleRouter.use(express.json());
+export default function(db: Db) {
+    const router = express.Router();
 
-articleRouter.get("/", async (_req, res) => {
-    try {
-        const articles = await collections?.articles?.find({}).toArray();
-        res.status(200).send(articles);
-    } catch (error) {
-        res.status(500).send(error instanceof Error ? error.message : "Unknown error");
-    }
-});
+    // route retrieving a specific article from a feed
+    router.get('/:feedId/:index', async (req, res) => {
+        const { feedId, index } = req.params;
+        
+        try {
+            const feedsCollection = db.collection<Feed>('feeds');
+            const feed = await feedsCollection.findOne({ _id: new ObjectId(feedId) });
 
-articleRouter.get("/:id", async (req, res) => {
-    try {
-        const id = req?.params?.id;
-        const query = { _id: new ObjectId(id) };
-        const article = await collections?.articles?.findOne(query);
+            if (!feed?.url) {
+                return res.status(404).json({ message: 'Feed not found' });
+            }
 
-        if (article) {
-            res.status(200).send(article);
-        } else {
-            res.status(404).send(`Failed to find a article: ID ${id}`);
+            const parsedFeed = JSON.parse(await parseRssFeed(feed.url));
+            const articles = parsedFeed.rss.channel[0].item;
+
+            const articleIndex = parseInt(index);
+            if (articleIndex < 0 || articleIndex >= articles.length) {
+                return res.status(404).json({ message: 'Article not found' });
+            }
+
+            const article = articles[articleIndex];
+            res.json({
+                _id: `${feed._id}-${articleIndex}`,
+                title: article.title[0],
+                link: article.link[0],
+                pubDate: article.pubDate[0],
+                description: article.description[0]
+            });
+        } catch (error) {
+            console.error('Error in article route:', error);
+            res.status(500).json({ 
+                message: 'Internal server error', 
+                error: error instanceof Error ? error.message : 'Unknown error' 
+            });
         }
-    } catch (error) {
-        res.status(404).end(`Failed to find article: ID ${req?.params?.id}`);
-    }
-});
+    });
+
+    return router;
+}

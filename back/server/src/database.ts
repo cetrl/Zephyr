@@ -19,6 +19,8 @@ export async function connectToDatabase(uri: string) {
     collections.feeds = db.collection<Feed>("feeds");
     collections.users = db.collection<User>("users");
     collections.articles = db.collection<Article>("articles");
+
+    return client.db();
 }
 
 async function applySchemaValidation(db: mongodb.Db) {
