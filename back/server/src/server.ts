@@ -27,6 +27,6 @@ connectToDatabase(ATLAS_URI)
         app.use('/user-feeds', userFeedRouter);
         app.use('/articles', articleRoutes(db));
 
-        app.listen(5200, () => console.log('Server running at http://localhost:5200'));
+        app.listen(5200, () => console.log('Server running'));
     })
     .catch(console.error);
