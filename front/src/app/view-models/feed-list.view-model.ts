@@ -1,43 +1,52 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Feed } from '../models/feed.model';
 import { FeedService } from '../services/feed.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class FeedListViewModel {
-  private allFeeds$: Observable<Feed[]>;
   private searchTermSubject = new BehaviorSubject<string>('');
+  private refreshSubject = new BehaviorSubject<void>(undefined);
 
   feeds$: Observable<Feed[]>;
   searchTerm: string = '';
 
   constructor(private feedService: FeedService) {
-    this.allFeeds$ = this.feedService.getFeeds();
-
-    this.feeds$ = combineLatest([
-      this.allFeeds$,
-      this.searchTermSubject.asObservable()
-    ]).pipe(
-      map(([feeds, term]) =>
-        feeds.filter(feed =>
-          feed.title.toLowerCase().includes(term.toLowerCase())
+    this.feeds$ = this.refreshSubject.pipe(
+      switchMap(() => this.feedService.getFeeds()),
+      switchMap(feeds =>
+        this.searchTermSubject.pipe(
+          map(term =>
+            feeds.filter(feed =>
+              feed.name.toLowerCase().includes(term.toLowerCase())
+            )
+          )
         )
       )
     );
   }
 
-  updateSearchTerm(term: string) {
+  updateSearchTerm(term: string): void {
     this.searchTerm = term;
     this.searchTermSubject.next(term);
   }
 
-  addFeed(title: string, url: string) {
+  addFeed(name: string, url: string): void {
     const newFeed: Feed = {
-      id: Date.now().toString(), // Simple unique ID generation
-      title,
-      url
+      name,
+      url,
     };
-    this.feedService.addFeed(newFeed);
+    this.feedService.addFeed(newFeed).subscribe(() => this.refreshFeeds());
+  }
+
+  refreshFeeds(): void {
+    this.refreshSubject.next();
+  }
+
+  deleteFeed(id: string): void {
+    this.feedService.deleteFeed(id).subscribe(() => this.refreshFeeds());
   }
 }

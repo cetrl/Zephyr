@@ -1,7 +1,7 @@
-<ion-card *ngIf="article" [routerLink]="['/article', article.id]">
+<ion-card *ngIf="article" [routerLink]="['/article', article._id]">
   <ion-card-header>
     <ion-card-title>{{ article.title }}</ion-card-title>
-    <ion-card-subtitle>{{ article.publishDate | date }}</ion-card-subtitle>
+    <ion-card-subtitle>{{ article.pubDate | date }}</ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
     {{ article.content | slice:0:100 }}...

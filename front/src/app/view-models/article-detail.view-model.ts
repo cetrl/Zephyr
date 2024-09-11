@@ -4,7 +4,10 @@ import { map, catchError } from 'rxjs/operators';
 import { Article } from '../models/article.model';
 import { FeedService } from '../services/feed.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ArticleDetailViewModel {
   article$: Observable<Article | undefined> = new Observable<Article | undefined>();
 

@@ -1,27 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { FeedListViewModel } from '../../view-models/feed-list.view-model';
+import { Observable } from 'rxjs';
+import { Feed } from '../../models/feed.model';
 
 @Component({
   selector: 'app-feed-list',
   templateUrl: './feed-list.page.html',
   styleUrls: ['./feed-list.page.scss'],
-  providers: [FeedListViewModel]
 })
-export class FeedListPage {
+export class FeedListPage implements OnInit {
+  feeds$: Observable<Feed[]>;
+
   constructor(
     public vm: FeedListViewModel,
     private alertController: AlertController
-  ) {}
+  ) {
+    this.feeds$ = this.vm.feeds$;
+  }
+
+  ngOnInit() {
+    this.vm.refreshFeeds();
+  }
 
   async presentAddFeedAlert() {
     const alert = await this.alertController.create({
       header: 'Add New Feed',
       inputs: [
         {
-          name: 'title',
+          name: 'name',
           type: 'text',
-          placeholder: 'Feed Title'
+          placeholder: 'Feed name'
         },
         {
           name: 'url',
@@ -37,8 +46,8 @@ export class FeedListPage {
         {
           text: 'Add',
           handler: (data) => {
-            if (data.title && data.url) {
-              this.vm.addFeed(data.title, data.url);
+            if (data.name && data.url) {
+              this.vm.addFeed(data.name, data.url);
             }
           }
         }

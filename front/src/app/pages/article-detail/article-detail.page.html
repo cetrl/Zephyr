@@ -10,7 +10,7 @@
 <ion-content class="ion-padding">
   <ng-container *ngIf="vm.article$ | async as article; else noArticle">
     <h1>{{ article.title }}</h1>
-    <p>{{article.author}}, {{ article.publishDate | date }}</p>
+    <p>{{article.author}}, {{ article.pubDate | date }}</p>
     <div [innerHTML]="article.content"></div>
   </ng-container>
   <ng-template #noArticle>
