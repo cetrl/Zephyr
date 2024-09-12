@@ -20,21 +20,30 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/feeds', feedRouter);
-app.use('/users', userRouter);
-app.use('/user-feeds', userFeedRouter);
-
-// We'll connect to the database and set up the articles route when the app is initialized
 let dbConnection: any = null;
-connectToDatabase(ATLAS_URI)
-    .then((db) => {
-        dbConnection = db;
-        app.use('/articles', articleRoutes(db));
-        console.log('Connected to MongoDB');
-    })
-    .catch(console.error);
 
-// This route can be used by Vercel to keep the serverless function warm
+// Middleware to ensure database connection
+const ensureDbConnection = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    if (!dbConnection) {
+        try {
+            dbConnection = await connectToDatabase(ATLAS_URI);
+            console.log('Connected to MongoDB');
+        } catch (error) {
+            console.error('Failed to connect to MongoDB', error);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
+    next();
+};
+
+app.use(ensureDbConnection);
+
+app.use('/api/feeds', feedRouter);
+app.use('/api/users', userRouter);
+app.use('/api/user-feeds', userFeedRouter);
+app.use('/api/articles', articleRoutes(dbConnection));
+
+// Health check route
 app.get('/api/health', (req, res) => {
     res.status(200).send('OK');
 });
