@@ -43,6 +43,20 @@ app.use('/api/users', userRouter);
 app.use('/api/user-feeds', userFeedRouter);
 app.use('/api/articles', articleRoutes(dbConnection));
 
+// catch-all routes for debug
+app.use('*', (req, res) => {
+    res.status(404).json({
+      error: 'Not Found',
+      message: `Route not found: ${req.method} ${req.originalUrl}`,
+      availableRoutes: ['/api/feeds', '/api/users', '/api/user-feeds', '/api/articles']
+    });
+  });
+
+//test route
+app.get('/api/test', (req, res) => {
+res.json({ message: 'API is working' });
+});
+
 // Health check route
 app.get('/api/health', (req, res) => {
     res.status(200).send('OK');
