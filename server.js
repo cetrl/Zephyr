@@ -18,12 +18,14 @@ if (!ATLAS_URI) {
 (0, database_1.connectToDatabase)(ATLAS_URI)
     .then((db) => {
     const app = (0, express_1.default)();
-    app.use((0, cors_1.default)());
+    const PORT = process.env.PORT || 5200;
+    app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
     app.use(express_1.default.json());
     app.use('/feeds', feed_routes_1.feedRouter);
     app.use('/users', user_routes_1.userRouter);
     app.use('/user-feeds', user_feed_router_1.userFeedRouter);
     app.use('/articles', (0, article_routes_1.default)(db));
-    app.listen(5200, () => console.log('Connected to MongoDB'));
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 })
     .catch(console.error);
