@@ -30,7 +30,6 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 let dbConnection = null;
-// Middleware to ensure database connection
 const ensureDbConnection = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     if (!dbConnection) {
         try {
@@ -48,7 +47,14 @@ app.use(ensureDbConnection);
 app.use('/api/feeds', feed_routes_1.feedRouter);
 app.use('/api/users', user_routes_1.userRouter);
 app.use('/api/user-feeds', user_feed_router_1.userFeedRouter);
-app.use('/api/articles', (0, article_routes_1.default)(dbConnection));
+app.use('/api/articles', (req, res, next) => {
+    if (dbConnection) {
+        (0, article_routes_1.default)(dbConnection)(req, res, next);
+    }
+    else {
+        res.status(500).json({ error: 'Database connection not established' });
+    }
+});
 // catch-all routes for debug
 app.use('*', (req, res) => {
     res.status(404).json({
@@ -65,7 +71,6 @@ app.get('/api/test', (req, res) => {
 app.get('/api/health', (req, res) => {
     res.status(200).send('OK');
 });
-// Only start the server if we're not in a Vercel environment
 if (process.env.VERCEL !== '1') {
     const PORT = process.env.PORT || 5200;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -13,12 +13,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/mongodb": "^4.0.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "mongodb": "^6.8.0",
-    "xml2js": "^0.6.2",
-    "typescript": "^5.5.4"
+    "express": "^4.21",
+    "mongodb": "^6.9.0",
+    "typescript": "^5.5.4",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

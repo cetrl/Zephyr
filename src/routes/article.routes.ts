@@ -6,12 +6,14 @@ import { parseRssFeed } from '../services/rss-parser';
 export default function(db: Db) {
     const router = express.Router();
 
-    // route retrieving a specific article from a feed 
-    // index start at last article
     router.get('/:feedId/:index', async (req, res) => {
         const { feedId, index } = req.params;
         
         try {
+            if (!ObjectId.isValid(feedId)) {
+                return res.status(400).json({ message: 'Invalid feed ID' });
+            }
+
             const feedsCollection = db.collection<Feed>('feeds');
             const feed = await feedsCollection.findOne({ _id: new ObjectId(feedId) });
 
@@ -19,21 +21,24 @@ export default function(db: Db) {
                 return res.status(404).json({ message: 'Feed not found' });
             }
 
-            const parsedFeed = JSON.parse(await parseRssFeed(feed.url));
-            const articles = parsedFeed.rss.channel[0].item;
+            const parsedFeed = await parseRssFeed(feed.url).then(JSON.parse).catch(() => null);
+            if (!parsedFeed?.rss?.channel?.[0]?.item) {
+                return res.status(500).json({ message: 'Failed to parse feed' });
+            }
 
-            const articleIndex = parseInt(index);
-            if (articleIndex < 0 || articleIndex >= articles.length) {
+            const articles = parsedFeed.rss.channel[0].item;
+            const articleIndex = parseInt(index, 10);
+            if (isNaN(articleIndex) || articleIndex < 0 || articleIndex >= articles.length) {
                 return res.status(404).json({ message: 'Article not found' });
             }
 
             const article = articles[articleIndex];
             res.json({
                 _id: `${feed._id}-${articleIndex}`,
-                title: article.title[0],
-                link: article.link[0],
-                pubDate: article.pubDate[0],
-                description: article.description[0]
+                title: article.title?.[0] ?? 'No title',
+                link: article.link?.[0] ?? 'No link',
+                pubDate: article.pubDate?.[0] ?? 'No date',
+                description: article.description?.[0] ?? 'No description'
             });
         } catch (error) {
             console.error('Error in article route:', error);

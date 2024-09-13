@@ -1,16 +1,16 @@
-import * as mongodb from "mongodb";
+import { MongoClient, Db, Collection, MongoServerError } from "mongodb";
 import { Feed } from "./models/feed";
 import { User } from "./models/user";
 import { Article } from "./models/article";
 
 export const collections: {
-    feeds?: mongodb.Collection<Feed>;
-    users?: mongodb.Collection<User>;
-    articles?: mongodb.Collection<Article>;
+    feeds?: Collection<Feed>;
+    users?: Collection<User>;
+    articles?: Collection<Article>;
 } = {};
 
-export async function connectToDatabase(uri: string) {
-    const client = new mongodb.MongoClient(uri);
+export async function connectToDatabase(uri: string): Promise<Db> {
+    const client = new MongoClient(uri);
     await client.connect();
 
     const db = client.db("zephyr");
@@ -20,16 +20,17 @@ export async function connectToDatabase(uri: string) {
     collections.users = db.collection<User>("users");
     collections.articles = db.collection<Article>("articles");
 
-    return client.db();
+    return db;
 }
 
-async function applySchemaValidation(db: mongodb.Db) {
+
+async function applySchemaValidation(db: Db) {
     await applyFeedSchema(db);
     await applyUserSchema(db);
     await applyArticleSchema(db);
-};
+}
 
-async function applyFeedSchema(db: mongodb.Db){
+async function applyFeedSchema(db: Db){
     const jsonSchema = {
         $jsonSchema: {
                 bsonType:"object",
@@ -49,9 +50,9 @@ async function applyFeedSchema(db: mongodb.Db){
         }
     }
     await createOrUpdateCollection(db, "feeds", jsonSchema);
-};
+}
 
-async function applyUserSchema(db: mongodb.Db) {
+async function applyUserSchema(db: Db) {
     const jsonSchema = {
         $jsonSchema: {
             bsonType: "object",
@@ -78,7 +79,7 @@ async function applyUserSchema(db: mongodb.Db) {
     await createOrUpdateCollection(db, "users", jsonSchema);
 }
 
-async function applyArticleSchema(db: mongodb.Db) {
+async function applyArticleSchema(db: Db) {
     const jsonSchema = {
         $jsonSchema: {
             bsonType: "object",
@@ -113,11 +114,11 @@ async function applyArticleSchema(db: mongodb.Db) {
     await createOrUpdateCollection(db, "articles", jsonSchema);
 }
 
-async function createOrUpdateCollection(db: mongodb.Db, collectionName: string, jsonSchema: object) {
+async function createOrUpdateCollection(db: Db, collectionName: string, jsonSchema: object) {
     await db.command({
         collMod: collectionName,
         validator: jsonSchema
-    }).catch(async (error: mongodb.MongoServerError) => {
+    }).catch(async (error: MongoServerError) => {
         if (error.codeName === "NamespaceNotFound") {
             await db.createCollection(collectionName, { validator: jsonSchema });
         }
