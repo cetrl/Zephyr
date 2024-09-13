@@ -10,10 +10,23 @@
 <ion-content class="ion-padding">
   <ng-container *ngIf="vm.article$ | async as article; else noArticle">
     <h1>{{ article.title }}</h1>
-    <p>{{article.author}}, {{ article.pubDate | date }}</p>
-    <div [innerHTML]="article.content"></div>
+    <p>
+      <ion-text color="medium">
+        {{ article.pubDate | date:'fullDate' }}
+      </ion-text>
+    </p>
+    <ion-card>
+      <ion-card-content>
+        <div [innerHTML]="article.description"></div>
+      </ion-card-content>
+    </ion-card>
+    <ion-button expand="block" [href]="article.link" target="_blank">
+      Read Full Article
+    </ion-button>
   </ng-container>
   <ng-template #noArticle>
-    <p>Article not found.</p>
+    <ion-text color="danger">
+      <p>Article not found.</p>
+    </ion-text>
   </ng-template>
 </ion-content>

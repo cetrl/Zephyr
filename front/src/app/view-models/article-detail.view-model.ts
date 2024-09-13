@@ -7,22 +7,21 @@ import { FeedService } from '../services/feed.service';
 @Injectable({
   providedIn: 'root'
 })
-
 export class ArticleDetailViewModel {
   article$: Observable<Article | undefined> = new Observable<Article | undefined>();
 
   constructor(private feedService: FeedService) {}
 
-  loadArticle(id: string) {
-    this.article$ = this.feedService.getArticle(id).pipe(
+  loadArticle(feedId: string, articleIndex: number) {
+    this.article$ = this.feedService.getArticle(feedId, articleIndex).pipe(
       map(article => {
         if (!article) {
-          throw new Error('Article not found');
+          throw new Error('article not found');
         }
         return article;
       }),
       catchError(error => {
-        console.error('Error loading article:', error);
+        console.error('error:', error);
         return of(undefined);
       })
     );

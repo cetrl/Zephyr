@@ -20,13 +20,16 @@ export class ArticleDetailPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.vm.loadArticle(id);
-      this.articleSubscription = this.vm.article$.subscribe(
-        article => this.article = article
-      );
-    }
+    this.route.params.subscribe(params => {
+      const feedId = params['feedId'];
+      const articleIndex = +params['index'];
+
+      if (feedId && !isNaN(articleIndex)) {
+        this.vm.loadArticle(feedId, articleIndex);
+      } else {
+        console.error('congratulations, you fucked up the routing');
+      }
+    });
   }
 
   ngOnDestroy() {

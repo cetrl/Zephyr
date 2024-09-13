@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, catchError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Feed } from '../models/feed.model';
 import { Article } from '../models/article.model';
@@ -9,7 +9,7 @@ import { MOCK_ARTICLES } from '../mock-data';
   providedIn: 'root'
 })
 export class FeedService {
-  private url = 'http://localhost:5200';
+  private url = 'http://localhost:5200/api';
   feeds$ = signal<Feed[]>([]);
   feed$ = signal<Feed>({} as Feed);
   private articles: Article[] = MOCK_ARTICLES;
@@ -45,9 +45,12 @@ export class FeedService {
     return of(this.articles);
   }
 
-  getArticle(id: string): Observable<Article | undefined> {
-    const article = MOCK_ARTICLES.find(a => a._id === id);
-    return of(article);
+  getArticle(feedId: string, articleIndex: number): Observable<Article | undefined> {
+    return this.httpClient.get<Article>(`${this.url}/articles/${feedId}/${articleIndex}`).pipe(
+      catchError(error => {
+        console.error('error', error);
+        return of(undefined);
+      })
+    );
   }
-
 }

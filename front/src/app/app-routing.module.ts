@@ -17,8 +17,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/feed-list/feed-list.module').then( m => m.FeedListPageModule)
   },
   {
-    path: 'article-detail',
-    loadChildren: () => import('./pages/article-detail/article-detail.module').then( m => m.ArticleDetailPageModule)
+    path: 'article-detail/:feedId/:index',
+    loadChildren: () => import('./pages/article-detail/article-detail.module').then(m => m.ArticleDetailPageModule)
   },
 
   {

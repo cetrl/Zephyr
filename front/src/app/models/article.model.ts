@@ -5,4 +5,5 @@ export interface Article {
   pubDate: Date;
   author?: string;
   link: string;
+  description?:string;
 }
