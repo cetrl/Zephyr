@@ -12,7 +12,7 @@ export class FeedListViewModel {
   private refreshSubject = new BehaviorSubject<void>(undefined);
 
   feeds$: Observable<Feed[]>;
-  searchTerm: string = '';
+  searchTerm = '';
 
   constructor(private feedService: FeedService) {
     this.feeds$ = this.refreshSubject.pipe(
@@ -35,18 +35,27 @@ export class FeedListViewModel {
   }
 
   addFeed(name: string, url: string): void {
-    const newFeed: Feed = {
-      name,
-      url,
-    };
-    this.feedService.addFeed(newFeed).subscribe(() => this.refreshFeeds());
+    this.feedService.addFeed({ name, url }).subscribe(
+      () => this.refreshFeeds(),
+      error => console.error('failed to add feed', error)
+    );
   }
 
   refreshFeeds(): void {
     this.refreshSubject.next();
   }
 
+  updateFeed(id: string, updatedFeed: Feed): void {
+    this.feedService.updateFeed(id, updatedFeed).subscribe(
+      () => this.refreshFeeds(),
+      error => console.error('failed to update feed', error)
+    );
+  }
+
   deleteFeed(id: string): void {
-    this.feedService.deleteFeed(id).subscribe(() => this.refreshFeeds());
+    this.feedService.deleteFeed(id).subscribe(
+      () => this.refreshFeeds(),
+      error => console.error('failed to delete feed', error)
+    );
   }
 }

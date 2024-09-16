@@ -17,6 +17,9 @@
       <a [href]="feed.url" target="_blank" rel="noopener noreferrer">
         {{ feed.name }}
       </a>
+      <ion-button (click)="presentUpdateDelFeed(feed)">
+        <ion-icon vertical="bottom" name="ellipsis-horizontal-outline" fill="clear"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 

@@ -18,7 +18,7 @@ export class FeedService {
   getFeeds(): Observable<Feed[]> {
     return this.httpClient.get<Feed[]>(`${this.url}/feeds`).pipe(
       catchError(error => {
-        console.error('you fucked up fetching feeds:', error);
+        console.error('error fetching feeds:', error);
         return of([]);
       })
     );
@@ -27,7 +27,7 @@ export class FeedService {
   getFeed(id: string): Observable<Feed> {
     return this.httpClient.get<Feed>(`${this.url}/feeds/${id}`).pipe(
       catchError(error => {
-        console.error(`you couldn't even fetch one feed, id: ${id}:`, error);
+        console.error(`errpr fetching one feed, id: ${id}:`, error);
         return of({} as Feed);
       })
     );
