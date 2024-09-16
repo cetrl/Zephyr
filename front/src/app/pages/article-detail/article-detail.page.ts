@@ -27,7 +27,7 @@ export class ArticleDetailPage implements OnInit, OnDestroy {
       if (feedId && !isNaN(articleIndex)) {
         this.vm.loadArticle(feedId, articleIndex);
       } else {
-        console.error('congratulations, you fucked up the routing');
+        console.error('routing error');
       }
     });
   }

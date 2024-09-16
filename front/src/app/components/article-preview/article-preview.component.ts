@@ -12,5 +12,13 @@ import { RouterModule } from '@angular/router';
   imports: [IonicModule, CommonModule, RouterModule]
 })
 export class ArticlePreviewComponent {
-  @Input() article!: Article;
+  @Input() article: Article | undefined;
+
+  get routerLink(): string[] {
+    if (this.article && this.article._id) {
+      const [feedId, index] = this.article._id.split('-');
+      return ['/article-detail', feedId, index];
+    }
+    return ['/'];
+  }
 }

@@ -14,6 +14,7 @@ export class FeedService {
 
   constructor(private httpClient: HttpClient) {}
 
+  //feed operations
   getFeeds(): Observable<Feed[]> {
     return this.httpClient.get<Feed[]>(`${this.url}/feeds`).pipe(
       catchError(error => {
@@ -44,6 +45,7 @@ export class FeedService {
     return this.httpClient.delete(`${this.url}/feeds/${id}`, { responseType: 'text' });
   }
 
+  //articles operations
   getRecentArticles(): Observable<Article[]> {
     return this.getFeeds().pipe(
       switchMap(feeds => {

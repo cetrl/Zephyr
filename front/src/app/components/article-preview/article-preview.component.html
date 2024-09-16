@@ -1,6 +1,6 @@
-<ion-card *ngIf="article" [routerLink]="['/article-detail', article._id]">
+<ion-card *ngIf="article" [routerLink]="routerLink">
   <ion-card-header>
-    <ion-card-title>{{ article.title | slice:0:50 }}{{ article.title.length > 100 ? '...' : '' }}</ion-card-title>
+    <ion-card-title>{{ article.title | slice:0:50 }}{{ article.title.length > 50 ? '...' : '' }}</ion-card-title>
     <ion-card-subtitle>{{ article.pubDate | date:'medium' }}</ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
