@@ -2,3 +2,23 @@ ion-button {
   --color: --ion-color-medium;
   --background: none;
 }
+
+ion-fab-button {
+  --background: #000000;
+  --background-activated: #333333;
+  --background-hover: #222222;
+  --border-radius: 50%;
+  --box-shadow: 0 4px 15px rgba(var(--ion-color-primary-rgb));
+  --color: var(--ion-color-light);
+  width: 40px;  /* Adjust this value to make it smaller or larger */
+  height: 40px; /* Should be the same as width for a perfect circle */
+}
+
+ion-fab-button::part(native) {
+  width: 100%;
+  height: 100%;
+}
+
+ion-fab-button ion-icon {
+  font-size: 20px; /* Adjust icon size to fit the smaller button */
+}

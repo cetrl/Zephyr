@@ -25,23 +25,131 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Compagnon-Roman', cursive;
-  font-size: 1.8em;
-  }
-
-a {
-  font-family: 'Compagnon-Roman';
-  font-size: 1.8em;
-}
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
  * For more info, please see:
  * https://ionicframework.com/docs/theming/dark-mode
  */
-
 @import "@ionic/angular/css/palettes/dark.always.css";
+
+h1, h2, h3, h4, h5, h6, ion-card-title {
+  font-family: 'Compagnon-Roman', cursive;
+  font-size: 1.6em;
+  }
+
+h2 {
+  text-align: center;
+  color: var(--ion-color-tertiary);
+  padding-bottom: 10px;
+}
+
+ion-card{
+  --background:none;
+  --border-color: var(--ion-color-primary);
+  --border-width: 1px 0 0 0;
+  --border-style: solid;
+  margin: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(var(--ion-color-primary-rgb), 0.3);
+}
+
+ion-card-header, ion-card-content{
+  padding-right: 0;
+}
+/* Target the list and its items */
+ion-list.list-md,
+.list-md ion-item {
+  background: transparent !important;
+}
+
+/* Style each item */
+ion-item.item.md {
+  --background: transparent !important;
+  --border-style: solid;
+  --border-color: rgba(var(--ion-color-primary-rgb));
+  --border-width: 0 0 1px 0;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --min-height: auto;
+  margin-bottom: 18px;
+}
+
+/* Override default Ionic borders */
+ion-item.item.md::part(native) {
+  border: none !important;
+}
+
+/* Style the link inside the item */
+ion-item.item.md a {
+  flex: 1;
+  padding: 0 16px;
+  color: var(--ion-color-light);
+  text-decoration: none;
+  margin-bottom: 6px;
+  font-family: 'Compagnon-Roman';
+  font-size: 1.6em;
+}
+
+/* Style the button inside the item */
+ion-item.item.md ion-button {
+  margin: 0;
+  --color: var(--ion-color-secondary);
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --border-radius: 4px;
+  height: 32px; /* Set a specific height */
+}
+
+/* Style the icon inside the button */
+ion-item.item.md ion-button ion-icon {
+  font-size: 18px;
+}
+
+/* Add extra space after the last item */
+ion-item.item.md:last-child {
+  margin-bottom: 24px;
+}
+
+ion-searchbar {
+  box-shadow: 0 0 10px var(--ion-color-tertiary);
+  border-radius: 15px; /* Reduced border radius */
+  --background: var(--ion-color-dark);
+  --color: var(--ion-color-light);
+  --placeholder-color: var(--ion-color-medium);
+  --icon-color: var(--ion-color-secondary);
+  --clear-button-color: var(--ion-color-secondary);
+  margin: 8px 12px;
+  max-width: calc(100% - 24px);
+  height: 50px;
+  transition: box-shadow 0.3s ease;
+}
+
+ion-searchbar::part(container) {
+  border: 1px solid var(--ion-color-secondary);
+}
+
+/* Style for when any searchbar is focused */
+ion-searchbar.searchbar-has-focus {
+  box-shadow: 0 0 15px var(--ion-color-secondary);
+}
+
+ion-searchbar .searchbar-input {
+  background: var(--ion-color-dark);
+  color: var(--ion-color-light);
+  padding: 0 30px; /* Adjusted padding */
+}
+/* Ensure proper sizing on different screen sizes */
+@media (max-width: 576px) {
+  ion-searchbar {
+    margin: 8px;
+    max-width: calc(100% - 16px);
+  }
+}
+
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 // @import "@ionic/angular/css/palettes/dark.system.css";
