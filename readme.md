@@ -57,10 +57,10 @@ MONGO_URI=mongodb://localhost:27017/zephyr
 - [x] Standardize API responses (réécrire routes)
 
 (1j)
-- [ ] déploiement back
+- [/] déploiement back
 
 (1j)
-- [ ] branchement de l'api au front
+- [x] branchement de l'api au front
 
 ## Sprint 2 (3 j)
 (0,5j)
