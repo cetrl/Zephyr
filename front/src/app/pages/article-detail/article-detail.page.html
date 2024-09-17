@@ -11,8 +11,9 @@
   <ng-container *ngIf="vm.article$ | async as article; else noArticle">
     <h1>{{ article.title }}</h1>
     <p>
-      <ion-text color="medium">
-        {{ article.pubDate | date:'fullDate' }}
+      <ion-text color="tertiary">
+        {{ article.pubDate | date:'medium' }}
+        <span *ngIf="article.creator"> • By {{ article.creator }}</span>
       </ion-text>
     </p>
     <ion-card>
@@ -20,9 +21,9 @@
         <div [innerHTML]="article.description"></div>
       </ion-card-content>
     </ion-card>
-    <ion-button expand="block" [href]="article.link" target="_blank">
+    <a expand="block" [href]="article.link" target="_blank" color="medium">
       Read Full Article
-    </ion-button>
+    </a>
   </ng-container>
   <ng-template #noArticle>
     <ion-text color="danger">

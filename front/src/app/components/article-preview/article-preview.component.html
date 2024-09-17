@@ -1,7 +1,10 @@
 <ion-card *ngIf="article" [routerLink]="routerLink">
   <ion-card-header>
     <ion-card-title>{{ article.title | slice:0:100 }}{{ article.title.length > 100 ? '...' : '' }}</ion-card-title>
-    <ion-card-subtitle>{{ article.pubDate | date:'medium' }}</ion-card-subtitle>
+    <ion-card-subtitle color="tertiary">
+      {{ article.pubDate | date:'medium' }}
+      <span *ngIf="article.creator"> • By {{ article.creator }}</span>
+    </ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
     {{ (article.description || article.content || 'No content available') | slice:0:100 }}{{ (article.description || article.content || '').length > 100 ? '...' : '' }}

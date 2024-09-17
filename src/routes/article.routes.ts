@@ -38,7 +38,8 @@ export default function(db: Db) {
                 title: article.title?.[0] ?? 'No title',
                 link: article.link?.[0] ?? 'No link',
                 pubDate: article.pubDate?.[0] ?? 'No date',
-                description: article.description?.[0] ?? 'No description'
+                description: article.description?.[0] ?? 'No description',
+                creator: article['dc:creator']?.[0] ?? 'Unknown creator'
             });
         } catch (error) {
             console.error('Error in article route:', error);

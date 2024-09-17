@@ -19,7 +19,7 @@ const rss_parser_1 = require("../services/rss-parser");
 function default_1(db) {
     const router = express_1.default.Router();
     router.get('/:feedId/:index', (req, res) => __awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
         const { feedId, index } = req.params;
         try {
             if (!mongodb_1.ObjectId.isValid(feedId)) {
@@ -45,7 +45,8 @@ function default_1(db) {
                 title: (_e = (_d = article.title) === null || _d === void 0 ? void 0 : _d[0]) !== null && _e !== void 0 ? _e : 'No title',
                 link: (_g = (_f = article.link) === null || _f === void 0 ? void 0 : _f[0]) !== null && _g !== void 0 ? _g : 'No link',
                 pubDate: (_j = (_h = article.pubDate) === null || _h === void 0 ? void 0 : _h[0]) !== null && _j !== void 0 ? _j : 'No date',
-                description: (_l = (_k = article.description) === null || _k === void 0 ? void 0 : _k[0]) !== null && _l !== void 0 ? _l : 'No description'
+                description: (_l = (_k = article.description) === null || _k === void 0 ? void 0 : _k[0]) !== null && _l !== void 0 ? _l : 'No description',
+                creator: (_o = (_m = article['dc:creator']) === null || _m === void 0 ? void 0 : _m[0]) !== null && _o !== void 0 ? _o : 'Unknown creator'
             });
         }
         catch (error) {

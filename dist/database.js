@@ -111,6 +111,10 @@ function applyArticleSchema(db) {
                         bsonType: "objectId",
                         description: "'feedId' is required and is an ObjectId",
                     },
+                    creator: {
+                        bsonType: "string",
+                        description: "'creator' is optional and is a string",
+                    },
                 },
             },
         };

@@ -27,7 +27,7 @@ export class FeedService {
   getFeed(id: string): Observable<Feed> {
     return this.httpClient.get<Feed>(`${this.url}/feeds/${id}`).pipe(
       catchError(error => {
-        console.error(`errpr fetching one feed, id: ${id}:`, error);
+        console.error(`error fetching one feed, id: ${id}:`, error);
         return of({} as Feed);
       })
     );
@@ -48,20 +48,23 @@ export class FeedService {
   //articles operations
   getRecentArticles(): Observable<Article[]> {
     return this.getFeeds().pipe(
-      switchMap(feeds => {
-        const articleRequests = feeds
-          .filter(feed => feed._id !== undefined)  // Filter out feeds without an _id
-          .map(feed => this.getArticle(feed._id as string, 1));  // Assert _id as string
-        return forkJoin(articleRequests);
-      }),
+      switchMap(feeds =>
+        forkJoin(
+          feeds
+            .filter(feed => feed._id !== undefined)
+            .flatMap(feed => [
+              this.getArticle(feed._id as string, 1),
+              this.getArticle(feed._id as string, 2)
+            ])
+        )
+      ),
       map(articles => articles.filter((article): article is Article => article !== undefined)),
       catchError(error => {
-        console.error('cannot get recentarticle:', error);
+        console.error('cannot get recent articles:', error);
         return of([]);
       })
     );
   }
-
   getArticle(feedId: string, articleIndex: number): Observable<Article | undefined> {
     return this.httpClient.get<Article>(`${this.url}/articles/${feedId}/${articleIndex}`).pipe(
       catchError(error => {

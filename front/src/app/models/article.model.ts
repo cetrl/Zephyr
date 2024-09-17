@@ -4,6 +4,6 @@ export interface Article {
   pubDate: Date;
   description?:string;
   content?: string;
-  author?: string;
+  creator?: string;
   link: string;
 }

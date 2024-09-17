@@ -23,7 +23,7 @@ const user_feed_router_1 = require("./routes/user-feed.router");
 (0, dotenv_1.config)();
 const { ATLAS_URI } = process.env;
 if (!ATLAS_URI) {
-    console.error('No ATLAS_URI environment variable has been defined in config.env');
+    console.error("No ATLAS_URI environment variable has been defined in config.env");
     process.exit(1);
 }
 const app = (0, express_1.default)();
@@ -34,44 +34,49 @@ const ensureDbConnection = (req, res, next) => __awaiter(void 0, void 0, void 0,
     if (!dbConnection) {
         try {
             dbConnection = yield (0, database_1.connectToDatabase)(ATLAS_URI);
-            console.log('Connected to MongoDB');
+            console.log("Connected to MongoDB");
         }
         catch (error) {
-            console.error('Failed to connect to MongoDB', error);
-            return res.status(500).json({ error: 'Internal Server Error' });
+            console.error("Failed to connect to MongoDB", error);
+            return res.status(500).json({ error: "Internal Server Error" });
         }
     }
     next();
 });
 app.use(ensureDbConnection);
-app.use('/api/feeds', feed_routes_1.feedRouter);
-app.use('/api/users', user_routes_1.userRouter);
-app.use('/api/user-feeds', user_feed_router_1.userFeedRouter);
-app.use('/api/articles', (req, res, next) => {
+app.use("/api/feeds", feed_routes_1.feedRouter);
+app.use("/api/users", user_routes_1.userRouter);
+app.use("/api/user-feeds", user_feed_router_1.userFeedRouter);
+app.use("/api/articles", (req, res, next) => {
     if (dbConnection) {
         (0, article_routes_1.default)(dbConnection)(req, res, next);
     }
     else {
-        res.status(500).json({ error: 'Database connection not established' });
+        res.status(500).json({ error: "Database connection not established" });
     }
 });
 // catch-all routes for debug
-app.use('*', (req, res) => {
+app.use("*", (req, res) => {
     res.status(404).json({
-        error: 'Not Found',
+        error: "Not Found",
         message: `Route not found: ${req.method} ${req.originalUrl}`,
-        availableRoutes: ['/api/feeds', '/api/users', '/api/user-feeds', '/api/articles']
+        availableRoutes: [
+            "/api/feeds",
+            "/api/users",
+            "/api/user-feeds",
+            "/api/articles",
+        ],
     });
 });
 //test route
-app.get('/api/test', (req, res) => {
-    res.json({ message: 'API is working' });
+app.get("/api/test", (req, res) => {
+    res.json({ message: "API is working" });
 });
 // Health check route
-app.get('/api/health', (req, res) => {
-    res.status(200).send('OK');
+app.get("/api/health", (req, res) => {
+    res.status(200).send("OK");
 });
-if (process.env.VERCEL !== '1') {
+if (process.env.VERCEL !== "1") {
     const PORT = process.env.PORT || 5200;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
